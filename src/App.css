@@ -1,16 +1,20 @@
-.App {
+.Screen {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding-left: 10vw;
-  height: 100vh;
+  align-items: center;
 }
 
 .main-text {
   font-size: 50px;
+  color: rgb(159, 111, 207);
 }
 
 .Lamp {
   cursor: pointer;
+}
+
+.Lamp2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

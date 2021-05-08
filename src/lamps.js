@@ -12,8 +12,11 @@ const openai = new OpenAI(OPENAI_API_KEY);
 const Lamps = () => {
   const [lampOn, turnOn] = useState(false);
   const [recipeData, changeRecipeData] = useState('');
+  const [loading, setLoading] = useState(false);
 
   async function GPTOut(prompt_) {
+    setLoading(true);
+
     const gptResponse = await openai.complete({
         engine: 'davinci',
         prompt: prompt_,
@@ -30,6 +33,9 @@ const Lamps = () => {
     console.log(gptResponse.data)
             
     changeRecipeData(gptResponse.data.choices[0].text);
+
+    setLoading(false);
+
     console.log(recipeData);
   };
 
@@ -52,13 +58,13 @@ const Lamps = () => {
           <img className="Lamp" src="/LampOff.png" alt="lamp off" />
         </div>
       ) : (
-        <div onClick={() => {
+        <div className="Lamp2" onClick={() => {
             turnOn(false);
             updateBGColor();
           }}>
           <img className="Lamp" src="/LampOn.png" alt="lamp on" />
           <p>
-            {recipeData}
+            {loading ? "Loading Recipe Inspiration..." : recipeData}
           </p>
         </div>
       )}
