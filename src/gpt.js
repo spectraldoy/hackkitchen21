@@ -1,6 +1,10 @@
 import './App.css';
 import React from "react";
-import openai from "openai-api";
+
+const OpenAI = require('openai-api');
+// apparently we shouldn't include the key directly in the file
+const OPENAI_API_KEY = "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";
+const openai = new OpenAI(OPENAI_API_KEY);
 
 async function GPTOut(prompt_) {
     const gptResponse = await openai.complete({
