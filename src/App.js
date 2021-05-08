@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import GPTOut from './gpt';
 
 function App() {
   return (
