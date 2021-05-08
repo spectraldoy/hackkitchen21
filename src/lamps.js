@@ -9,10 +9,6 @@ const OPENAI_API_KEY = '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';
 const openai = new OpenAI(OPENAI_API_KEY);
 
 
-function changeBGColor(color) {
-  document.body.style.background = color;
-}
-
 const Lamps = () => {
   const [lampOn, turnOn] = useState(false);
   const [recipeData, changeRecipeData] = useState('');
@@ -37,6 +33,13 @@ const Lamps = () => {
     console.log(recipeData);
   };
 
+  const updateBGColor = () => {
+    document.body.style.background = lampOn ? "white" : "#282c34";
+  }
+
+  useEffect(() => {
+    updateBGColor();
+  });
 
   return (
     <div className="lamp-wrapper">
@@ -44,14 +47,14 @@ const Lamps = () => {
         <div onClick={() => {
             turnOn(true); 
             GPTOut("Come up with a recipe for pizza.");
-            changeBGColor("white");
+            updateBGColor();
           }}>
           <img className="Lamp" src="/LampOff.png" alt="lamp off" />
         </div>
       ) : (
         <div onClick={() => {
             turnOn(false);
-            changeBGColor("#282c34");
+            updateBGColor();
           }}>
           <img className="Lamp" src="/LampOn.png" alt="lamp on" />
           <p>
