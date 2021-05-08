@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 require('dotenv').config()
 const OpenAI = require('openai-api');
@@ -27,26 +27,32 @@ async function GPTOut(prompt_) {
     return console.log(gptResponse.data);
 };
 
-function changeBGColor(color) {
-  document.body.style.background = color;
-}
 
 const Lamps = () => {
   const [lampOn, turnOn] = useState(false);
+
+  const updateBGColor = () => {
+    document.body.style.background = lampOn ? "white" : "#282c34";
+  }
+
+  useEffect(() => {
+    updateBGColor();
+  })
+
   return (
     <div className="lamp-wrapper">
       {!lampOn ? (
         <div onClick={() => {
             turnOn(true); 
             GPTOut("Come up with a recipe for mushroom soup.");
-            changeBGColor("white");
+            updateBGColor();
           }}>
           <img className="Lamp" src="/LampOff.png" alt="lamp off" />
         </div>
       ) : (
         <div onClick={() => {
             turnOn(false);
-            changeBGColor("#282c34");
+            updateBGColor();
           }}>
           <img className="Lamp" src="/LampOn.png" alt="lamp on" />
         </div>
