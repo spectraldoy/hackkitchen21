@@ -1,7 +1,16 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 10vw;
+  height: 100vh;
 }
 
 .main-text {
   font-size: 50px;
+}
+
+.Lamp {
+  cursor: pointer;
 }

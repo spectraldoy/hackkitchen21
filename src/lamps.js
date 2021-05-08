@@ -22,20 +22,31 @@ async function GPTOut(prompt_) {
         stop: ['\n', "testing"]
     });
             
-    return gptResponse.data.choices.text;
+    return console.log(gptResponse.data);
 };
+
+function changeBGColor(color) {
+  document.body.style.background = color;
+}
 
 const Lamps = () => {
   const [lampOn, turnOn] = useState(false);
   return (
     <div className="lamp-wrapper">
       {!lampOn ? (
-        <div onClick={() => {turnOn(true); GPTOut("Come up with a recipe using mushrooms.");}}>
-          <img src="/LampOff.png" alt="lamp off" />
+        <div onClick={() => {
+            turnOn(true); 
+            GPTOut("Come up with a recipe for mushroom soup.");
+            changeBGColor("white");
+          }}>
+          <img className="Lamp" src="/LampOff.png" alt="lamp off" />
         </div>
       ) : (
-        <div onClick={() => turnOn(false)}>
-          <img src="/LampOn.png" alt="lamp on" />
+        <div onClick={() => {
+            turnOn(false);
+            changeBGColor("#282c34");
+          }}>
+          <img className="Lamp" src="/LampOn.png" alt="lamp on" />
         </div>
       )}
     </div>
