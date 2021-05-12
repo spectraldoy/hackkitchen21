@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 require('dotenv').config()
 const OpenAI = require('openai-api');
 // apparently we shouldn't include the key directly in the file
-const OPENAI_API_KEY = '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';
+const OPENAI_API_KEY = SECRET_KEY;
 const openai = new OpenAI(OPENAI_API_KEY);
 
 
